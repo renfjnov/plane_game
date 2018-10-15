@@ -15,4 +15,6 @@ class ObjectsWithImage {
         self = this
         this.game.drawImage(self)
     }
+    update() {
+    }
 }

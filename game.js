@@ -5,6 +5,8 @@ let Game = function(fps, images, runCallBack) {
         actions: {},
         keyDowns: {},
         images: {
+            cloud: null,
+            player: null,
             ball: null,
             paddle: null,
             brick_1: null,

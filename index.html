@@ -10,7 +10,7 @@
     </style>
 </head>
 <body>
-    <canvas id="id-canvas" width="400" height="300"></canvas>
+    <canvas id="id-canvas" width="400" height="600"></canvas>
     <hr>
     <input type="range" id="id-input-fps">
     <script src="levels.js"></script>
@@ -22,9 +22,10 @@
 
     <script src="scene/end/scene_end.js"></script>
     <script src="scene/title/scene_title.js"></script>
-    <script src="scene/main/ball.js"></script>
+    <script src="scene/main/bullet.js"></script>
+    <script src="scene/main/cloud.js"></script>
+    <script src="scene/main/player.js"></script>
     <script src="scene/main/brick.js"></script>
-    <script src="scene/main/paddle.js"></script>
     <script src="scene/main/scene_main.js"></script>
     <script src="scene/editor/scene_editor.js"></script>
 
@@ -92,9 +93,11 @@ let enableDebugMode = function(enabled, game, ball) {
 let __main = function() {
     window.fps = 30
     let images = {
+        player: './img/player.jpeg',
         brick_1: './img/brick_1.png',
         brick_2: './img/brick_2.png',
         ball: './img/ball.png',
+        cloud: './img/cloud.png',
         paddle: './img/paddle.png',
         save_button: './img/save_button.png',
         editor_button: './img/editor_button.png',

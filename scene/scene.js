@@ -22,7 +22,9 @@ class Scene {
     }
 
     update() {
-
+        for (let e of this.elements) {
+            e.update && e.update()
+        }
     }
     addElement(...args) {
         for(let e of args){

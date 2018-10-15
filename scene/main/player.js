@@ -1,6 +1,6 @@
-class Paddle extends ObjectsWithImage {
+class Player extends ObjectsWithImage {
     constructor(game) {
-        super(game, 150, 250, 'paddle')
+        super(game, 150, 600, 'player')
         this.speed = 7
     }
     _move(x) {

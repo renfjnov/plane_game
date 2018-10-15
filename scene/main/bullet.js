@@ -1,6 +1,6 @@
-class Ball extends ObjectsWithImage {
+class Bullet extends ObjectsWithImage {
     constructor(game) {
-        super(game, 250, 150, 'ball')
+        super(game, 250, 150, 'bullet')
         this.speedX = 10
         this.speedY = -10
         this.fired = false

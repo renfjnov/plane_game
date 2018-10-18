@@ -25,7 +25,7 @@
     <script src="scene/main/bullet.js"></script>
     <script src="scene/main/cloud.js"></script>
     <script src="scene/main/player.js"></script>
-    <script src="scene/main/brick.js"></script>
+    <script src="scene/main/enemy.js"></script>
     <script src="scene/main/scene_main.js"></script>
     <script src="scene/editor/scene_editor.js"></script>
 
@@ -39,7 +39,7 @@ let loadLevels = function(n, game) {
         let positions = levels[n]
         for (let i = 0; i < positions.length; i++) {
             let p = positions[i]
-            let brick = new Brick(p, game)
+            let brick = new Enemy(p, game)
             bricks.push(brick)
         }
         return bricks
@@ -93,11 +93,12 @@ let enableDebugMode = function(enabled, game, ball) {
 let __main = function() {
     window.fps = 30
     let images = {
-        player: './img/player.jpeg',
-        brick_1: './img/brick_1.png',
+        player: './img/player.png',
+        bullet: './img/bullet.png',
+        enemy: './img/enemy.jpeg',
         brick_2: './img/brick_2.png',
         ball: './img/ball.png',
-        cloud: './img/cloud.png',
+        cloud: './img/cloud.jpg',
         paddle: './img/paddle.png',
         save_button: './img/save_button.png',
         editor_button: './img/editor_button.png',

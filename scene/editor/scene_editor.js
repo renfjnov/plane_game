@@ -22,8 +22,8 @@ class SceneEditor extends Scene {
         let game = this.game
         this.basePosition1 = [150, 250, 1]
         this.basePosition2 = [200, 250, 2]
-        this.baseBrick1 = new Brick(this.basePosition1, game)
-        this.baseBrick2 = new Brick(this.basePosition2, game)
+        this.baseBrick1 = new Enemy(this.basePosition1, game)
+        this.baseBrick2 = new Enemy(this.basePosition2, game)
         this.saveButton = new SaveButton(this.game)
         this.startButton = new FinishButton(this.game)
         this.elements.push(this.baseBrick1, this.baseBrick2, this.saveButton, this.startButton)
@@ -36,11 +36,11 @@ class SceneEditor extends Scene {
                 return
             }
             if (isClicked(event, self.baseBrick1)) {
-                newBrick = new Brick(self.basePosition1, game)
+                newBrick = new Enemy(self.basePosition1, game)
                 self.elements.push(newBrick)
                 enableDrag = true
             } else if (isClicked(event, self.baseBrick2)) {
-                newBrick = new Brick(self.basePosition2, game)
+                newBrick = new Enemy(self.basePosition2, game)
                 self.elements.push(newBrick)
                 enableDrag = true
             } else if (isClicked(event, self.saveButton)) {

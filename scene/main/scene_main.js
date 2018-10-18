@@ -1,14 +1,15 @@
 class SceneMain extends Scene {
     init() {
-        this.cloud = new Cloud(this.game)
+        this.clouds = new Clouds(this.game)
         this.player = new Player(this.game)
+        this.enemies = new Enemies(this.game)
         // this.paddle = new Paddle(this.game)
         // this.ball = new Ball(this.game)
         // enableDebugMode(true, this.game, this.ball)
         // window.bricks = loadLevels(1, this.game)
         // this.pointTitle = new Label(this.game, 10, 290, '得分:')
         // this.pointLabel = new Label(this.game, 40, 290, 0)
-        this.addElement(this.cloud, this.player)
+        this.addElement(this.clouds, this.player, this.enemies)
         let self = this
         self.game.registerActions('a', function () {
             self.player.moveLeft()
@@ -17,10 +18,13 @@ class SceneMain extends Scene {
         self.game.registerActions('d', function () {
             self.player.moveRight()
         })
-        //
-        // self.game.registerActions('f', function () {
-        //     self.ball.fire()
-        // })
+
+        self.game.registerActions('w', function() {
+            self.player.moveUp()
+        })
+        self.game.registerActions('s', function() {
+            self.player.moveDown()
+        })
     }
 
     update() {

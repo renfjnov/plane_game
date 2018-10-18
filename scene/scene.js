@@ -40,7 +40,7 @@ class Scene {
     deleteBricks() {
         let result = []
         for (let e of this.elements) {
-            if (! (e instanceof  Brick)) {
+            if (! (e instanceof  Enemy)) {
                 log('删除bricks', this.elements)
                 result.push(e)
             }

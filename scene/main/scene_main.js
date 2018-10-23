@@ -24,26 +24,39 @@ class SceneMain extends Scene {
     update() {
         if (paused) {
                 return
+        }
+        super.update()
+        let self = this
+        for (let i = 0; i < self.enemies.bullets.length; i++) {
+            let eb = self.enemies.bullets[i]
+
+            if (collide(eb, self.player)) {
+                self.player.kill()
+                self.enemies.killBullet(i)
             }
-            super.update()
-        for (let i = 0; i < this.enemies.elements.length; i++) {
-            let e = this.enemies.elements[i]
-            for (let j = 0; j < e.bullets.length ; j++) {
-                let eb = e.bullets[j]
-                if (collide(eb, this.player)) {
-                    this.player.kill()
-                    e.killBullet(j)
+
+            for (let k = 0; k < self.player.bullets.length; k++) {
+                let pb = self.player.bullets[k]
+                if (collide(eb, pb)) {
+                    log('碰撞')
+                    self.enemies.killBullet(i)
+                    self.player.killBullet(k)
                 }
-                for (let k = 0; k < this.player.bullets.length; k++) {
-                    let pb = this.player.bullets[k]
-                    if (collide(pb, e)) {
-                        this.enemies.kill(k)
-                        this.player.killBullet(k)
-                    } else if (collide(pb, eb)) {
-                        e.killBullet(j)
-                        this.player.killBullet(k)
-                    }
+            }
+        }
+
+        for (let k= 0; k < self.enemies.elements.length ; k++) {
+            let enemy = self.enemies.elements[k]
+            for (let i = 0; i < self.player.bullets.length; i++) {
+                let pb = self.player.bullets[i]
+                if (collide(pb, enemy)) {
+                    self.enemies.kill(k)
+                    self.player.killBullet(i)
+                } else if (collide(self.player, enemy)) {
+                    self.enemies.kill(k)
+                    self.player.kill()
                 }
+
             }
         }
 

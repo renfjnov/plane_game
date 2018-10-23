@@ -28,7 +28,7 @@ class Enemy extends ObjectsWithImage {
         let x = this.x + this.w / 2
         let y = this.y
         let bullet = new EnemyBullet(this.game, x, y)
-        this.bullets.push(bullet)
+        return bullet
     }
 
     draw() {
@@ -41,14 +41,14 @@ class Enemy extends ObjectsWithImage {
     }
     update() {
         this.move()
-        this.shoot()
-        for (let i = 0; i < this.bullets.length; i++) {
-            let b = this.bullets[i]
-            b.update()
-            if (b.y > this.game.canvas.height) {
-                this.killBullet(i)
-            }
-        }
+        // this.shoot()
+        // for (let i = 0; i < this.bullets.length; i++) {
+        //     let b = this.bullets[i]
+        //     b.update()
+        //     if (b.y > this.game.canvas.height) {
+        //         this.killBullet(i)
+        //     }
+        // }
 
     }
     killBullet(i) {
@@ -60,6 +60,7 @@ class Enemies {
     constructor(game) {
         this.game = game
         this.elements = []
+        this.bullets = []
         this.coolDown = 9
         this.createEnemies()
     }
@@ -75,29 +76,38 @@ class Enemies {
         for (let e of this.elements) {
             e.draw()
         }
+        for (let b of this.bullets) {
+            b.draw()
+        }
     }
     update() {
-        // log('enemies', this.elements)
         this.coolDown --
         if (this.coolDown == 0) {
             this.createEnemies()
             this.coolDown = 30
         }
+        for (let b of this.bullets) {
+            b.update()
+        }
         for (let i = 0; i < this.elements.length; i++) {
             let e = this.elements[i]
             e.update()
+            let bullet = e.shoot()
+            if (bullet) {
+                this.bullets.push(bullet)
+            }
             if (e.y > this.game.canvas.height || e.lifes === 0) {
-                this.elements.splice(i, 1)
+                this.kill(i)
             }
         }
     }
     kill(i) {
-        this.elements[i] && this.elements[i].kill()
-        if (!this.elements[i].alive) {
+        // this.elements[i].kill()
+        // if (!this.elements[i].alive) {
             this.elements.splice(i, 1)
-        }
+        // }
     }
-    bullets() {
-
+    killBullet(i) {
+        this.bullets.splice(i, 1)
     }
 }

@@ -2,7 +2,8 @@ class Player extends ObjectsWithImage {
     constructor(game) {
         log('init player')
         super(game, 150, 300, 'player')
-        this.speed = 7
+        this.speed = 10
+        this.life = 1
         this.bullets = []
         this.coolDownConfig = 9
         this.coolDown = 0
@@ -37,6 +38,9 @@ class Player extends ObjectsWithImage {
         this._move(this.x, this.y + this.speed)
     }
     shoot() {
+        if (this.life < 1) {
+            return
+        }
         if (this.coolDown !== 0) {
             this.coolDown--
             return
@@ -50,14 +54,27 @@ class Player extends ObjectsWithImage {
     update() {
         super.update()
         this.shoot()
-        for (let bullet of this.bullets) {
-            bullet.update()
+        for (let i = 0; i < this.bullets.length; i++) {
+            let b = this.bullets[i]
+            b.update()
+            if (b.y < 0) {
+                this.killBullet(i)
+            }
         }
     }
     draw() {
-        super.draw()
+        if (this.life > 0) {
+            super.draw()
+        }
         for (let bullet of this.bullets) {
             bullet.draw()
         }
     }
+    kill() {
+        this.life--
+    }
+    killBullet(i) {
+        this.bullets.splice(i, 1)
+    }
+
 }

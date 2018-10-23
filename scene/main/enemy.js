@@ -4,8 +4,8 @@ class Enemy extends ObjectsWithImage {
         super(game, x, y, 'enemy')
         this.lifes = lives
         this.alive = true
-        this.speedY = 10
-        this.coolDownConfig = 4
+        this.speedY = 5
+        this.coolDownConfig = 40
         this.coolDown = 0
         this.bullets = []
     }
@@ -42,9 +42,17 @@ class Enemy extends ObjectsWithImage {
     update() {
         this.move()
         this.shoot()
-        for (let b of this.bullets) {
+        for (let i = 0; i < this.bullets.length; i++) {
+            let b = this.bullets[i]
             b.update()
+            if (b.y > this.game.canvas.height) {
+                this.killBullet(i)
+            }
         }
+
+    }
+    killBullet(i) {
+        this.bullets.splice(i, 1)
     }
 }
 
@@ -82,5 +90,14 @@ class Enemies {
                 this.elements.splice(i, 1)
             }
         }
+    }
+    kill(i) {
+        this.elements[i] && this.elements[i].kill()
+        if (!this.elements[i].alive) {
+            this.elements.splice(i, 1)
+        }
+    }
+    bullets() {
+
     }
 }

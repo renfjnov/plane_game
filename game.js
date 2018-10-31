@@ -1,3 +1,10 @@
+const config = {
+    'particle_speed': 5,
+    'particle_ay': 0.5,
+    'particle_ax': 0,
+}
+
+
 let Game = function(fps, images, runCallBack) {
     // images 是一个对象, 存储图片的名字和路径
     let g = {
@@ -8,11 +15,9 @@ let Game = function(fps, images, runCallBack) {
             cloud: null,
             player: null,
             bullet: null,
-            ball: null,
-            paddle: null,
+            particle: null,
+            bg: null,
             enemy: null,
-            brick_2: null,
-            save_button: null,
             editor_button: null,
             start_button: null,
         },

@@ -37,6 +37,19 @@ class Scene {
             }
         }
     }
+
+    deleteElement(...args) {
+        for(let e of args){
+            if (Array.isArray(e)) {
+                for(let b of e) {
+                    this.elements.push(b)
+                }
+            } else {
+                this.elements.push(e)
+            }
+        }
+    }
+
     deleteBricks() {
         let result = []
         for (let e of this.elements) {

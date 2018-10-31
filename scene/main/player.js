@@ -7,6 +7,7 @@ class Player extends ObjectsWithImage {
         this.bullets = []
         this.coolDownConfig = 9
         this.coolDown = 0
+        this.alive = true
         this.shoot()
  }
     _move(x, y) {
@@ -72,6 +73,9 @@ class Player extends ObjectsWithImage {
     }
     kill() {
         this.life--
+        if (this.life <= 0) {
+            this.alive = false
+        }
     }
     killBullet(i) {
         this.bullets.splice(i, 1)

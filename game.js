@@ -18,7 +18,6 @@ let Game = function(fps, images, runCallBack) {
             particle: null,
             bg: null,
             enemy: null,
-            editor_button: null,
             start_button: null,
         },
     }

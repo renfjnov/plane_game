@@ -17,18 +17,13 @@ class EditorButton extends ObjectsWithImage {
 class SceneTitle extends Scene {
     init() {
         let self = this
-        let editorButton = new EditorButton(this.game, 150, 150)
         let startButton = new StartButton(this.game, 150, 100)
-        self.addElement(editorButton, startButton)
+        self.addElement(startButton)
         window.addEventListener('click', function(event) {
-            if (self.game.scene instanceof SceneTitle) {
+            if (self.active) {
                 if (isClicked(event, startButton)) {
                     log('debug', startButton)
                     let s = new SceneMain(self.game)
-                    self.game.replaceScene(s)
-                }
-                if (isClicked(event, editorButton)) {
-                    let s = new SceneEditor(self.game)
                     self.game.replaceScene(s)
                 }
             }

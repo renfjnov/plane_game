@@ -78,10 +78,8 @@ class SceneMain extends Scene {
                     let y1 = self.player.y + Math.floor(self.player.h / 2)
                     let particles1 = new Particles(self.game, x1, y1, 100)
                     self.addElement(particles1)
-
                 }
             }
         }
-
     }
 }
